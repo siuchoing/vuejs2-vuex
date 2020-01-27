@@ -8,11 +8,19 @@
 <script>
     import { mapGetters } from 'vuex';
 
+    /**********
+     * mapGetters is an object with all methods, mapped methods, and computed properties
+     * spread operator (...) will pull out all properties and methods from mapGetters
+     */
     export default {
-        computed:
-            mapGetters([
-                'doubleCounter',
-                'stringCounter'
-            ])
+        computed: {
+            ...mapGetters([
+                           'doubleCounter',
+                           'stringCounter'
+                       ]),
+            myOwnProperties() {
+
+            }
+        }
     }
 </script>
