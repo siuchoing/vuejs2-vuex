@@ -34,6 +34,8 @@ export const store = new Vuex.Store({
      *     once the asynchronous calculation or getter function is finished,
      *     then all changes to our state still happen synchronously
      *     to make sure execute some async code before making this change.
+     *
+     * !!! Payload is basically data we pass to mutate the state.
      */
     mutations: {
         increment: (state, payload) => {
