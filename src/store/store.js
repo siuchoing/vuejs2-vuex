@@ -22,8 +22,15 @@ export const store = new Vuex.Store({
         }
     },
     /********************************
-     * Mutations will be committed, then changes the state,
-     * and to prevent multiple components manipulating our state
+     * !!! Mutations will be committed, then changes the state,
+     *     and to prevent multiple components manipulating our state
+     *     Mutations must be synchronous, it fails to setTimeout();
+     *
+     *
+     * !!! Extra piece is an action / extra function. It will commit the mutation,
+     *     once the asynchronous calculation or getter function is finished,
+     *     then all changes to our state still happen synchronously
+     *     to make sure execute some async code before making this change.
      */
     mutations: {
         increment: state => {
@@ -32,5 +39,39 @@ export const store = new Vuex.Store({
         decrement: state => {
             state.counter--;
         }
+    },
+    actions: {
+        /**************************
+         * !!! Context object has the commit method in this context object to commit a change,
+         *     will access to out getters, and with all methods and properties by passing actions
+         * @param context
+         */
+        // increment: context => {
+        //     context.commit('increment');
+        // },
+
+        /************************************************************
+         * !!! If we only need to get one property of an object,
+         *     then we can use the ES6 feature of destructuring, by passing this as an argument,
+         *     it will only pull out the commit method in this context object to commit a change,
+         *
+         */
+        increment: ({ commit }) => {
+            // commit a mutation
+            commit('increment');
+        },
+        decrement: ({ commit }) => {
+            commit('decrement');
+        },
+        asyncIncrement: ({ commit }) => {
+           setTimeout(() => {
+               commit('increment');
+            }, 1000);
+        },
+        asyncDecrement: ({ commit }) => {
+            setTimeout(() => {
+                commit('decrement');
+            }, 1000);
+        },
     }
 });
