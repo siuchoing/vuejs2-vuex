@@ -10,7 +10,8 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     // the counter is now in our central store
     state: {
-        counter: 0
+        counter: 0,
+        value: 0
     },
     /************************************
      * !!! Set up getters to have reusable code for accessing our state,
@@ -22,6 +23,9 @@ export const store = new Vuex.Store({
         },
         stringCounter: state => {
             return state.counter + ' Clicks';
+        },
+        value: state => {
+            return state.value;
         }
     },
     /********************************
@@ -43,6 +47,9 @@ export const store = new Vuex.Store({
         },
         decrement: (state, payload) => {
             state.counter -= payload;
+        },
+        updateValue: (state, payload) => {
+            state.value = payload;
         }
     },
     actions: {
@@ -78,5 +85,8 @@ export const store = new Vuex.Store({
                 commit('decrement', payload.by);
             }, payload.duration);
         },
+        updateValue({commit}, payload) {
+            commit('updateValue', payload);
+        }
     }
 });
