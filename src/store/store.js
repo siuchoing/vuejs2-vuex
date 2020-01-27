@@ -2,10 +2,9 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import counter from './modules/counter';
 
-// let javascript create an object here which I can access with the name actions,
-import * as actions from './actions';
-import * as getters from './getters';
-import * as mutations from './mutations';
+import actions from './actions';
+import getters from './getters';
+import mutations from './mutations';
 
 Vue.use(Vuex);
 

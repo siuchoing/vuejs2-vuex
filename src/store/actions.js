@@ -1,3 +1,5 @@
+import * as types from './types';
+
 /**************************
  * !!! Context object has the commit method in this context object to commit a change,
  *     will access to out getters, and with all methods and properties by passing actions
@@ -7,8 +9,10 @@
 //     context.commit('increment');
 // },
 
-export const updateValue = ({commit}, payload) => {
-    commit('updateValue', payload);
+export default {
+    [types.UPDATE_VALUE]: ({commit}, payload) => {
+        commit(types.MUTATE_UPDATE_VALUE, payload)
+    }
 };
 
 // For More actions

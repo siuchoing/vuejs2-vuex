@@ -36,10 +36,10 @@ const getters = {
  * !!! Payload is basically data we pass to mutate the state.
  */
 const mutations = {
-    increment: (state, payload) => {
+    [types.MUTATE_INCREMENT_COUNTER]: (state, payload) => {
         state.counter += payload;
     },
-    decrement: (state, payload) => {
+    [types.MUTATE_DECREMENT_COUNTER]: (state, payload) => {
         state.counter -= payload;
     }
 };
@@ -51,21 +51,21 @@ const mutations = {
  *
  */
 const actions = {
-    increment: ({ commit }, payload) => {
+    [types.COUNTER_INCREMENT]: ({ commit }, payload) => {
         // commit a mutation and passing second argument
-        commit('increment', payload);
+        commit(types.MUTATE_INCREMENT_COUNTER, payload);
     },
-    decrement: ({ commit }, payload) => {
-        commit('decrement', payload);
+    [types.COUNTER_DECREMENT]: ({ commit }, payload) => {
+        commit(types.MUTATE_DECREMENT_COUNTER, payload);
     },
-    asyncIncrement: ({ commit }, payload) => {
+    [types.COUNTER_INCREMENT_ASYNC]: ({commit}, payload) => {
         setTimeout(() => {
-            commit('increment', payload.by);
+            commit(types.MUTATE_INCREMENT_COUNTER, payload.by);
         }, payload.duration);
     },
-    asyncDecrement: ({ commit }, payload) => {
+    [types.COUNTER_DECREMENT_ASYNC]: ({commit}, payload) => {
         setTimeout(() => {
-            commit('decrement', payload.by);
+            commit(types.MUTATE_DECREMENT_COUNTER, payload.by);
         }, payload.duration);
     }
 };
