@@ -2,36 +2,20 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import counter from './modules/counter';
 
+// let javascript create an object here which I can access with the name actions,
+import * as actions from './modules/actions';
+import * as getters from './modules/getters';
+import * as mutations from './modules/mutations';
+
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
         value: 0
     },
-    getters: {
-        value: state => {
-            return state.value;
-        }
-    },
-    mutations: {
-        updateValue: (state, payload) => {
-            state.value = payload;
-        }
-    },
-    actions: {
-        /**************************
-         * !!! Context object has the commit method in this context object to commit a change,
-         *     will access to out getters, and with all methods and properties by passing actions
-         * @param context
-         */
-        // increment: context => {
-        //     context.commit('increment');
-        // },
-
-        updateValue({commit}, payload) {
-            commit('updateValue', payload);
-        }
-    },
+    getters,
+    mutations,
+    actions,
     modules: {
         counter
     }
