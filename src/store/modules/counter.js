@@ -1,5 +1,7 @@
+import * as types from '../types';
+
 /*******************
- * doubleCounter is function
+ * [types.DOUBLE_COUNTER] is function
  * state is passed automatically by vuex as argument
  */
 // the counter is now in our central store
@@ -12,10 +14,10 @@ const state = {
  *     For multiple components and more complex calculations to shorten time
  */
 const getters = {
-    doubleCounter: state => {
+    [types.DOUBLE_COUNTER]: state => {
         return state.counter * 2;
     },
-    stringCounter: state => {
+    [types.CLICK_COUNTER]: state => {
         return state.counter + ' Clicks';
     }
 };

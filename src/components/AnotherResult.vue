@@ -7,6 +7,7 @@
 
 <script>
     import { mapGetters } from 'vuex';
+    import * as types from '../store/types';
 
     /**********
      * mapGetters is an object with all methods, mapped methods, and computed properties
@@ -14,10 +15,10 @@
      */
     export default {
         computed: {
-            ...mapGetters([
-                           'doubleCounter',
-                           'stringCounter'
-                       ]),
+            ...mapGetters({
+                doubleCounter: types.DOUBLE_COUNTER,
+                stringCounter: types.CLICK_COUNTER
+            }),
             myOwnProperties() {
 
             }
