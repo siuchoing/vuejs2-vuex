@@ -13,6 +13,8 @@
                 <hr>
                 <input type="text" v-model="value">
                 <p>{{ value }}</p>
+                <!--Auto-namespacing feature to avoid setup all the namespaces manually-->
+                <p>More Detail of Auto-namespacing: <a href="https://github.com/vuejs/vuex/releases/tag/v2.1.0">Click Me</a></p>
             </div>
         </div>
     </div>
