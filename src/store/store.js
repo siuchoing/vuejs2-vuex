@@ -12,7 +12,10 @@ export const store = new Vuex.Store({
     state: {
         counter: 0
     },
-    // For multiple components and more complex calculations to shorten time
+    /************************************
+     * !!! Set up getters to have reusable code for accessing our state,
+     *     For multiple components and more complex calculations to shorten time
+      */
     getters: {
         doubleCounter: state => {
             return state.counter * 2;
