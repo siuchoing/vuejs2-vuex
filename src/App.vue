@@ -11,7 +11,7 @@
                 <hr>
                 <app-another-counter></app-another-counter>
                 <hr>
-                <input type="text" :value="value" @input="updateValue">
+                <input type="text" v-model="value">
                 <p>{{ value }}</p>
             </div>
         </div>
@@ -27,8 +27,14 @@
     export default {
         // cannot use v-model in computed properties
         computed: {
-            value() {
-                return this.$store.getters.value;
+            value: {
+                get() {
+                    return this.$store.getters.value;
+                },
+                set() {
+                    // to get the value and then call this store dispatch update value and pass the value.
+                    this.$store.dispatch('updateValue', event.target.value);
+                }
             }
         },
         methods: {
