@@ -33,11 +33,11 @@ export const store = new Vuex.Store({
      *     to make sure execute some async code before making this change.
      */
     mutations: {
-        increment: state => {
-            state.counter++;
+        increment: (state, payload) => {
+            state.counter += payload;
         },
-        decrement: state => {
-            state.counter--;
+        decrement: (state, payload) => {
+            state.counter -= payload;
         }
     },
     actions: {
@@ -56,22 +56,22 @@ export const store = new Vuex.Store({
          *     it will only pull out the commit method in this context object to commit a change,
          *
          */
-        increment: ({ commit }) => {
-            // commit a mutation
-            commit('increment');
+        increment: ({ commit }, payload) => {
+            // commit a mutation and passing second argument
+            commit('increment', payload);
         },
-        decrement: ({ commit }) => {
-            commit('decrement');
+        decrement: ({ commit }, payload) => {
+            commit('decrement', payload);
         },
-        asyncIncrement: ({ commit }) => {
+        asyncIncrement: ({ commit }, payload) => {
            setTimeout(() => {
-               commit('increment');
-            }, 1000);
+               commit('increment', payload.by);
+            }, payload.duration);
         },
-        asyncDecrement: ({ commit }) => {
+        asyncDecrement: ({ commit }, payload) => {
             setTimeout(() => {
-                commit('decrement');
-            }, 1000);
+                commit('decrement', payload.by);
+            }, payload.duration);
         },
     }
 });
